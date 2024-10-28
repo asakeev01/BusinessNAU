@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>{{ program.name }}</h1>
+    {% if images %}
+        <div class="slider">
+            {% for image in images %}
+                <img src="{{ image.image.url }}" alt="Program Image">
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No images available for this program.</p>
+    {% endif %}
+</body>
+</html>
