@@ -1,19 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1>{{ program.name }}</h1>
+{% extends "header.html" %}
+
+{% block title %}{{ program.name }} - Image Slider{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+
     {% if images %}
-        <div class="slider">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+          <ol class="carousel-indicators">
             {% for image in images %}
-                <img src="{{ image.image.url }}" alt="Program Image">
+              <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}"></li>
             {% endfor %}
+          </ol>
+          <div class="carousel-inner">
+            {% for image in images %}
+              <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <img class="d-block w-100" src="{{ image.image.url }}" alt="Slide {{ forloop.counter }}">
+              </div>
+            {% endfor %}
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </a>
         </div>
     {% else %}
         <p>No images available for this program.</p>
     {% endif %}
-</body>
-</html>
+</div>
+{% endblock %}
