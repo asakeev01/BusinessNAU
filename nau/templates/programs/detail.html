@@ -6,16 +6,21 @@
 <div class="container mt-5">
 
     {% if images %}
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
           <ol class="carousel-indicators">
             {% for image in images %}
               <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}"></li>
             {% endfor %}
           </ol>
           <div class="carousel-inner">
+              <div class="overlay-header">
+                  <h1>{{ program.name }}</h1>
+              </div>
             {% for image in images %}
               <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                <img class="d-block w-100" src="{{ image.image.url }}" alt="Slide {{ forloop.counter }}">
+                <div class="overlay-image">
+                    <img class="d-block w-100" src="{{ image.image.url }}" alt="Slide {{ forloop.counter }}">
+                </div>
               </div>
             {% endfor %}
           </div>
