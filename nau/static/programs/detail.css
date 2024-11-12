@@ -3,7 +3,7 @@
 }
 
 .carousel-item {
-    height: 32rem;
+    height: 800px;
     background: #777;
     color: white;
     position: relative;
@@ -15,10 +15,11 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
-    color: blue;
+    color: white;
     text-align: center;
     font-size: 2rem;
     font-weight: bold;
+    font-family: 'Bebas Neue';
 }
 
 .overlay-image {

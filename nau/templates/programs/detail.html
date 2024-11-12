@@ -3,10 +3,10 @@
 {% block title %}{{ program.name }} - Image Slider{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
+<div class="container-fluid p-0">
 
     {% if images %}
-        <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div id="carouselExampleIndicators" class="carousel slide carousel-fade w-100" data-bs-ride="carousel">
           <ol class="carousel-indicators">
             {% for image in images %}
               <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}"></li>

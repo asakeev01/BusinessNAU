@@ -11,13 +11,20 @@
 </head>
 <body>
     <header class="base__header">
-        <div class="container d-flex flex-column align-items-center h-100">
+        <div class="base__header-inner">
             <div class="base__logo-container">
-                <img src="/media/nau-secondary-single-color-blue.svg" alt="Logo" class="base__logo">
+                <img src="/media/trace2.svg" alt="Logo" class="base__logo">
             </div>
             <h1 class="base__department-title">BUSINESS ADMINISTRATION DEPARTMENT</h1>
         </div>
     </header>
+    <div class="base__nav-container">
+        <nav class="base__nav-bar">
+            <a href="#" class="base__nav-link">Home</a>
+            <a href="#" class="base__nav-link">About</a>
+            <a href="#" class="base__nav-link">Contact</a>
+        </nav>
+    </div>
     {% block content %}{% endblock %}
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
