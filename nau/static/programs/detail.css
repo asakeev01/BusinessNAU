@@ -11,24 +11,41 @@
 
 .overlay-header {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 10%;
+    left: 10%;
     transform: translate(-50%, -50%);
-    z-index: 10;
+    z-index: 5;
     color: white;
     text-align: center;
-    font-size: 2rem;
     font-weight: bold;
     font-family: 'Bebas Neue';
+    background-color: #123CA2;
+    background-color: black;
+    padding: 10px 20px;
+    border-radius: 12px;
+    opacity: 0.85;
 }
 
-.overlay-image {
+.carousel-inner::before {
+    content: "";
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
     top: 0;
-    background-position: center;
-    background-size: cover;
-    opacity: 0.5;
+    left: 0;
+    transform: translate(-50%, -50%) rotate(-10deg);
+    width: 120%;
+    height: 50%;
+    background-color: #1D3365;
+    border-radius: 20px; /* Rounds the edges of the overlay */
+    z-index: 3; /* Places it behind the text */
 }
+
+/*.overlay-image {*/
+/*    position: absolute;*/
+/*    bottom: 0;*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*    top: 0;*/
+/*    background-position: center;*/
+/*    background-size: cover;*/
+/*    opacity: 0.5;*/
+/*}*/
