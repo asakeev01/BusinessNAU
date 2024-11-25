@@ -36,5 +36,30 @@
     {% else %}
         <p>No images available for this program.</p>
     {% endif %}
+    {% if links %}
+    <div class="mt-4 text-center">
+        <h2>Useful Links</h2>
+        {% for link in links %}
+        <a href="{{ link.link }}" class="btn btn-primary m-2" target="_blank">{{ link.name }}</a>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Blocks Section -->
+    {% if blocks %}
+    <div class="mt-4">
+        <h2>Program Details</h2>
+        {% for block in blocks %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <p>{{ block.text }}</p>
+                {% if block.image %}
+                <img class="img-fluid mt-3" src="{{ block.image.url }}" alt="Block Image">
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
 </div>
 {% endblock %}

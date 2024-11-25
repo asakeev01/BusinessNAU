@@ -22,6 +22,7 @@ class Slider(models.Model):
 
 class Link(models.Model):
     program = models.ForeignKey(Program, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
     link = models.URLField(max_length=200)
 
     def __str__(self):
