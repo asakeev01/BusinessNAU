@@ -32,7 +32,7 @@ class Link(models.Model):
 class Block(models.Model):
     program = models.ForeignKey(Program, on_delete=models.CASCADE)
     text = models.TextField()
-    image = models.ImageField()
+    image = models.ImageField(blank=True, null=True)
 
     def __str__(self):
         return f"{self.program.name}'s block"
