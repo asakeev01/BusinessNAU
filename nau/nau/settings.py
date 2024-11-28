@@ -20,7 +20,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "programs.apps.ProgramsConfig",
-    "staff.apps.StaffConfig"
+    "staff.apps.StaffConfig",
+
+    "solo"
 ]
 
 MIDDLEWARE = [

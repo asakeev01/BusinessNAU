@@ -15,12 +15,11 @@
     left: 10%;
     transform: translate(-50%, -50%);
     z-index: 5;
-    color: white;
+    color: black;
     text-align: center;
     font-weight: bold;
     font-family: 'Bebas Neue';
-    background-color: #123CA2;
-    background-color: black;
+    background-color: white;
     padding: 10px 20px;
     border-radius: 12px;
     opacity: 0.85;

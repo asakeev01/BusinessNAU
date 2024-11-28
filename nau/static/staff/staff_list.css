@@ -1,0 +1,74 @@
+
+.staff__image-container {
+    height: 500px;
+    overflow: hidden;
+    margin: auto;
+}
+
+.staff__image-container::before {
+    content: "";
+    position: absolute;
+    top: 30px;
+    left: 0;
+    transform: translate(-50%, -50%) rotate(-10deg);
+    width: 130%;
+    height: 50%;
+    background-color: #1D3365;
+    border-radius: 20px; /* Rounds the edges of the overlay */
+    z-index: 3; /* Places it behind the text */
+}
+
+.staff__card-container {
+    background-color: #D8D9D7;
+    padding: 20px 0 20px 0;
+}
+
+.staff__card-inner {
+    max-width: 80%;
+    margin: auto;
+}
+
+.staff__card {
+    display: flex;
+    border: 3px solid white;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.staff__card-body {
+    margin: auto;
+    text-align: center;
+    font-family: Georgia;
+    color: black;
+}
+
+.staff__card-block {
+    width: 200px;
+    height: 400px;
+    background-color: #17408B;
+    border-radius: 20px;
+    border: 3px solid #1D3365;
+    background-image: url("../../media/nl.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.staff__image-container img {
+    object-fit: cover;
+    height: 100%;
+}
+
+.staff__header-overlay h1 {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.staff__card-img {
+    height: 400px;
+    width: 400px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 400px;
+    border: 3px solid #1D3365;
+}

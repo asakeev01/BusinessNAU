@@ -3,26 +3,36 @@
 {% block title %}Staff Members{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <h1 class="text-center">Staff Members</h1>
-    <div class="row">
+<div class="container-fluid p-0">
+    {% if config.header_image %}
+    <div class="staff__image-container position-relative">
+        <img src="{{ config.header_image.url }}" alt="{{ config.name }}" class="img-fluid w-100">
+        <div class="overlay-header">
+            <h1>{{ config.name }}</h1>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<div class="staff__card-container">
+    <div class="staff__card-inner">
         {% if staff_list %}
             {% for staff in staff_list %}
-            <div class="col-md-6 mb-4">
-                <div class="card">
+            <div class="col-md-12 mb-4">
+                <div class="staff__card">
                     {% if staff.photo %}
-                    <img src="{{ staff.photo.url }}" class="card-img-top" alt="{{ staff.name }}">
+                        <img src="{{ staff.photo.url }}" class="staff__card-img" alt="{{ staff.name }}">
                     {% endif %}
-                    <div class="card-body">
-                        <h5 class="card-title">{{ staff.name }}</h5>
-                        <p class="card-text"><strong>Position:</strong> {{ staff.position }}</p>
-                        <p class="card-text"><strong>Email:</strong> <a href="mailto:{{ staff.email }}">{{ staff.email }}</a></p>
-                        <p class="card-text"><strong>Phone:</strong> {{ staff.phone }}</p>
-                        <p class="card-text"><strong>Room Number:</strong> {{ staff.room_number }}</p>
+                    <div class="staff__card-body">
+                        <h5 class="staff__card-title">{{ staff.name }}</h5>
+                        <p class="staff__card-text">{{ staff.position }}</p>
+                        <p class="staff__card-text"> <a href="mailto:{{ staff.email }}">{{ staff.email }}</a></p>
+                        <p class="staff__card-text">
+                            {{ staff.phone }}, Rm.{{ staff.room_number }}
+                        </p>
                         {% if staff.curriculum_vitae %}
-                        <p class="card-text">
-                            <strong>CV:</strong>
-                            <a href="{{ staff.curriculum_vitae.url }}" target="_blank">Download</a>
+                        <p class="staff__card-text">
+                            <a href="{{ staff.curriculum_vitae.url }}" target="_blank">Curriculum vitae</a>
                         </p>
                         {% endif %}
 
@@ -42,6 +52,8 @@
                         <p>No education records available.</p>
                         {% endif %}
                     </div>
+                    <div class="staff__card-block">
+                    </div>
                 </div>
             </div>
             {% endfor %}
@@ -51,4 +63,5 @@
     </div>
 </div>
 {% endblock %}
+
 
