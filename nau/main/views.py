@@ -4,9 +4,9 @@ from .models import MainPage
 from programs.models import Program
 
 def main_page(request):
-    main_page_content = MainPage.objects.first()
+    main_page_content = MainPage.get_solo()
     programs = Program.objects.all()
-    return render(request, 'main_page.html', {
+    return render(request, 'main/main_page.html', {
         'main_page': main_page_content,
         'programs': programs,
     })

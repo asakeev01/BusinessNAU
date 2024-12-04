@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "programs.apps.ProgramsConfig",
     "staff.apps.StaffConfig",
+    "main.apps.MainConfig",
 
     "solo"
 ]

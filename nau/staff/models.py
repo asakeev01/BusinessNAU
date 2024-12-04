@@ -19,9 +19,13 @@ class StaffMember(models.Model):
     room_number = models.CharField(max_length=50)
     curriculum_vitae = models.FileField(upload_to='cv/', blank=True, null=True)
     photo = models.ImageField()
+    order = models.PositiveIntegerField(default=1)
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ['order']
 
 class Education(models.Model):
     DEGREE_CHOICES = [

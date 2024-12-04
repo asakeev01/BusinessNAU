@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+
+{% block title %}Staff Members{% endblock %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    {% if main_page.header_image %}
+    <div class="staff__image-container position-relative">
+        <img src="{{ main_page.header_image.url }}" alt="" class="img-fluid w-100">
+        <div class="overlay-header">
+            <h1>{{ main_page.header_title }}</h1>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+                {% for program in programs %}
+                    <button class="btn btn-primary program-btn"
+                            data-name="{{ program.main_name }}"
+                            data-description="{{ program.main_description }}"
+                            data-more-url="{% url 'detail' program.id %}"
+                            onclick="showProgramDetails(this)">
+                        {{ program.main_name }}
+                    </button>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<div id="main-program-modal" class="main__modal-overlay hidden">
+    <div class="main__modal-content">
+        <h3 id="main-modal-title"></h3>
+        <p id="main-modal-description"></p>
+        <div class="main__modal-buttons">
+            <a id="main-modal-more-btn" class="btn btn-outline-primary" href="#">More</a>
+            <a id="main-modal-apply-btn" class="btn btn-outline-success" href="https://nau.my.site.com/apply/TX_CommunitiesSelfReg">Apply</a>
+        </div>
+        <button class="btn btn-danger close-btn" onclick="closeProgramModal()">Close</button>
+    </div>
+</div>
+
+<script>
+    function showProgramDetails(button) {
+        const name = button.getAttribute('data-name');
+        const description = button.getAttribute('data-description');
+        const moreUrl = button.getAttribute('data-more-url');
+        const applyUrl = button.getAttribute('data-apply-url');
+
+        document.getElementById("main-modal-title").textContent = name;
+        document.getElementById("main-modal-description").textContent = description;
+        document.getElementById("main-modal-more-btn").setAttribute("href", moreUrl);
+
+        document.getElementById("main-program-modal").classList.remove("hidden");
+    }
+
+    function closeProgramModal() {
+        document.getElementById("main-program-modal").classList.add("hidden");
+    }
+</script>
+<div class="main__greeting-container">
+    <div class="main__greeting-row">
+        <div class="main__greeting-column-f">
+            <div class="main__greeting-image-wrap">
+                <img src="https://business.na.edu/wp-content/uploads/2024/11/IMG_0045-1-1-1-300x258.jpeg"
+                     alt="Dr. Selahattin Bekmez"
+                     class="main__greeting-image">
+            </div>
+            <p class="main__greeting-chair-name">Dr. Selahattin Bekmez</p>
+        </div>
+
+        <div class="main__greeting-column-s">
+            <h2 class="main__greeting-heading">Message from Chair</h2>
+            <p class="main__greeting-text">
+                <strong>Dear Students,</strong>
+            </p>
+            <p class="main__greeting-text">
+                <strong>I am delighted to welcome each of you to the Business Administration Department for another year of transformative learning and growth. As the Chair, it is my honor to guide you through an enriching academic journey that combines a robust curriculum with vibrant social activities.</strong>
+            </p>
+            <div class="main__greeting-signature">
+                <img src="https://business.na.edu/wp-content/uploads/2024/04/0737ac99b8cc62d127c57c9cd24494ca.png"
+                     alt="Signature"
+                     class="main__greeting-signature-image">
+            </div>
+            <div class="main__greeting-link">
+                <a href="#" 
+                   class="main__greeting-button"
+                   onclick="openGreetingModal()">
+                    Welcome Statement <i class="ri-arrow-right-up-line"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="main-greeting-modal" class="main__greeting-modal-overlay hidden">
+    <div class="main__greeting-modal-content">
+        <div class="main__greeting-modal-left">
+            <img src="https://business.na.edu/wp-content/uploads/2024/11/IMG_0045-1-1-1-300x258.jpeg"
+                 alt="Dr. Selahattin Bekmez"
+                 class="main__greeting-modal-image">
+        </div>
+
+        <div class="main__greeting-modal-right">
+            <h3 id="main-modal-title" class="main__greeting-modal-title">Welcome Statement</h3>
+            <p id="main-modal-description" class="main__greeting-modal-description">
+                Dear Students, <br><br>
+                I am delighted to welcome each of you to the Business Administration Department for another year of transformative learning and growth. As the Chair, it is my honor to guide you through an enriching academic journey that combines a robust curriculum with vibrant social activities.
+
+                Our department stands as a beacon of excellence, committed to fostering a holistic learning environment that empowers individuals to thrive in the ever-evolving world of business. We believe in the power of knowledge, innovation, and ethical leadership to drive success.
+
+                Our curriculum is meticulously designed to equip you with the knowledge, skills, and perspectives needed to excel in the dynamic business environment. We take pride in offering a comprehensive range of courses, spanning from foundational principles to cutting-edge specializations. Our faculty, composed of dedicated educators and industry experts, are committed to delivering a top-tier education that prepares you for the challenges and opportunities that lie ahead.
+
+                We also believe that successful business leaders are not only knowledgeable in their area of expertise but also adept at building and nurturing relationships. The ability to collaborate effectively, communicate with impact, and lead with empathy is paramount in today’s interconnected global business world. Through our program, you will have the chance to develop these essential skills as well in an engaging and supportive environment.
+
+                We have an exciting lineup of events planned, including networking mixers, guest speakers, and team-building activities. These gatherings offer opportunities to exchange ideas, share experiences, and forge lasting connections that extend beyond the classroom and office walls. To this end, I encourage all of you to participate in and contribute to our social initiatives.
+
+                Together, let us embark on a transformative academic year, full of growth, collaboration, and achievement. I have no doubt that with your dedication and our collective efforts, we will reach new heights of success.
+
+                Wishing you the best.
+
+                Selahattin Bekmez, Ph.D.
+
+                Professor of Economics & Chair
+
+                Business Administration Department
+            </p>
+        </div>
+
+        <button class="main__greeting-close-btn" onclick="closeGreetingModal()">×</button>
+    </div>
+</div>
+
+<script>
+function openGreetingModal() {
+    const modal = document.getElementById('main-greeting-modal');
+
+    modal.classList.remove('hidden');
+}
+
+function closeGreetingModal() {
+    const modal = document.getElementById('main-greeting-modal');
+    modal.classList.add('hidden');
+}
+</script>
+
+{% endblock %}

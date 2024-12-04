@@ -1,5 +1,7 @@
 from django.db import models
 
-class MainPage(models.Model):
+from solo.models import SingletonModel
+
+class MainPage(SingletonModel):
     header_image = models.ImageField()
-    header_title = models.CharField()
+    header_title = models.CharField(max_length=200)
