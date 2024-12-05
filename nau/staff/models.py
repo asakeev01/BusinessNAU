@@ -12,13 +12,13 @@ class StaffPageConfig(SingletonModel):
 
 
 class StaffMember(models.Model):
-    name = models.CharField(max_length=255)
-    email = models.EmailField()
-    position = models.CharField(max_length=255)
-    phone = models.CharField(max_length=50)
-    room_number = models.CharField(max_length=50)
+    name = models.CharField(max_length=255, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+    position = models.CharField(max_length=255, blank=True, null=True)
+    phone = models.CharField(max_length=50, blank=True, null=True)
+    room_number = models.CharField(max_length=50, blank=True, null=True)
     curriculum_vitae = models.FileField(upload_to='cv/', blank=True, null=True)
-    photo = models.ImageField()
+    photo = models.ImageField(blank=True, null=True)
     order = models.PositiveIntegerField(default=1)
 
     def __str__(self):
@@ -42,8 +42,7 @@ class Education(models.Model):
 
     staff_member = models.ForeignKey(StaffMember, on_delete=models.CASCADE, related_name='educations')
     degree = models.CharField(max_length=10, choices=DEGREE_CHOICES)
-    institution = models.CharField(max_length=255)
-    year_awarded = models.PositiveIntegerField(blank=True, null=True)
+    institution = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return f"{self.get_degree_display()} - {self.institution}"

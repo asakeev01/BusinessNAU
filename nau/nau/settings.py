@@ -22,8 +22,10 @@ INSTALLED_APPS = [
     "programs.apps.ProgramsConfig",
     "staff.apps.StaffConfig",
     "main.apps.MainConfig",
+    "news.apps.NewsConfig",
 
-    "solo"
+    "solo",
+    "ckeditor"
 ]
 
 MIDDLEWARE = [
