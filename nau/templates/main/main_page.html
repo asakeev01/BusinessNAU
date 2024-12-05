@@ -121,56 +121,28 @@ function closeGreetingModal() {
 </script>
 
 <div class="main__news-container">
+    <a class="main__news-button" href="/category/headlines/">News</a>
     <div class="main__news-row">
+        {% for news in upcoming_news %}
         <div class="main__news-column">
             <div class="main__news-image-container">
-                <a href="https://www.na.edu/acm-club-shines-in-regional-contest/" aria-label="ACM Club Shines in Regional Contest">
-                    <img src="https://www.na.edu/wp-content/uploads/2024/11/acm-700x441.jpg"
-                         alt="ACM club members shine at ICPC"
-                         class="main__news-image">
+                {% if news.image %}
+                <a href="{{ news.link }}" target="_blank">
+                    <img src="{{ news.image.url }}" alt="{{ news.name }}" class="main__news-image">
                 </a>
+                {% endif %}
             </div>
             <div class="main__news-content">
                 <h4 class="main__news-title">
-                    <a href="https://www.na.edu/acm-club-shines-in-regional-contest/">ACM Club Shines in Regional Contest</a>
+                    <a href="{{ news.link }}" target="_blank">{{ news.name }}</a>
                 </h4>
-                <p class="main__news-text">Outstanding Results in the 2024-2025 ICPC South Central USA Regional Contest</p>
+                <p class="main__news-text">{{ news.title }}</p>
             </div>
         </div>
-
-        <div class="main__news-column">
-            <div class="main__news-image-container">
-                <a href="https://www.na.edu/successful-free-book-fair-kick-off/" aria-label="Successful Free Book Fair Kick-off">
-                    <img src="https://www.na.edu/wp-content/uploads/2024/11/FreeBooks-700x441.jpg"
-                         alt="Free Books at NAU"
-                         class="main__news-image">
-                </a>
-            </div>
-            <div class="main__news-content">
-                <h4 class="main__news-title">
-                    <a href="https://www.na.edu/successful-free-book-fair-kick-off/">Successful Free Book Fair Kick-off</a>
-                </h4>
-                <p class="main__news-text">NAU Library hosts Halloween-themed event November 12, 2024 by The NAU Library</p>
-            </div>
-        </div>
-
-        <div class="main__news-column">
-            <div class="main__news-image-container">
-                <a href="https://www.na.edu/research-ranks-nau-among-best-in-us/" aria-label="Research.com Ranks NAU Among Best in US">
-                    <img src="https://www.na.edu/wp-content/uploads/2024/10/researchRanking-700x441.jpg"
-                         alt="Two NAU students smiling with a diploma at commencement"
-                         class="main__news-image">
-                </a>
-            </div>
-            <div class="main__news-content">
-                <h4 class="main__news-title">
-                    <a href="https://www.na.edu/research-ranks-nau-among-best-in-us/">Research.com Ranks NAU Among Best in US</a>
-                </h4>
-                <p class="main__news-text">NAU Honored in Research.com Rankings North American University</p>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </div>
+
 
 
 {% endblock %}
