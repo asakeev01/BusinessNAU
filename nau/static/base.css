@@ -43,7 +43,8 @@
     border-style: solid;
     border-color: gray;
     margin: auto;
-    border-width: 3px 0 3px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-bottom: 3px solid #183f8b;
 }
 
 .base__nav-bar {
@@ -58,7 +59,8 @@
 }
 
 .base__nav-link:hover {
-    text-decoration: underline;
+    color: #0056b3;
+    text-decoration: none;
 }
 
 /* General Footer Styles */
