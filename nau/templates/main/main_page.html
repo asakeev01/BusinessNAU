@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Staff Members{% endblock %}
+{% block title %}Main page{% endblock %}
 
 {% block content %}
 <div class="container-fluid p-0">
@@ -37,7 +37,7 @@
                      class="main__greeting-signature-image">
             </div>
             <div class="main__greeting-link">
-                <a href="#" 
+                <a href="#"
                    class="main__greeting-button"
                    onclick="openGreetingModal()">
                     Welcome Statement <i class="ri-arrow-right-up-line"></i>
@@ -78,17 +78,58 @@ function closeGreetingModal() {
 }
 </script>
 
-<div class="d-flex flex-wrap justify-content-center gap-3">
-    {% for program in programs %}
-        <button class="btn btn-primary program-btn"
-                data-name="{{ program.main_name }}"
-                data-description="{{ program.main_description }}"
-                data-more-url="{% url 'detail' program.id %}"
-                onclick="showProgramDetails(this)">
-            {{ program.main_name }}
-        </button>
-    {% endfor %}
+<div class="main__program-container">
+    <a class="main-button" href="/category/programs/">Programs</a>
+    <div class="main__program-row">
+        {% for program in programs %}
+        <div class="main__program-column">
+            <div class="main__program-image-container">
+                {% if program.main_image %}
+                <a href="{% url 'detail' program.id %}" target="_blank">
+                    <img src="{{ program.main_image.url }}" alt="{{ program.main_name }}" class="main__program-image">
+                </a>
+                {% endif %}
+            </div>
+            <div class="main__program-content">
+                <button class="accordion-toggle">
+                    {{ program.main_name }}
+                    <span class="arrow">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <p class="main__program-text">{{ program.main_description }}</p>
+                </div>
+                <div class="main__program-buttons">
+                    <a class="main__program-link main__program-link--more" href="{% url 'detail' program.id %}">More</a>
+                    <a class="main__program-link main__program-link--apply" href="https://nau.my.site.com/apply/TX_CommunitiesSelfReg" target="_blank">Apply</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('.accordion-toggle').forEach(button => {
+            const content = button.nextElementSibling;
+            const arrow = button.querySelector('.arrow');
+
+            button.addEventListener('click', () => {
+                const isOpen = content.classList.contains('open');
+
+                if (isOpen) {
+                    content.classList.remove('open');
+                    button.classList.remove('open');
+                } else {
+                    content.classList.add('open');
+                    button.classList.add('open');
+                }
+            });
+        });
+    });
+</script>
+
+
 <div id="main-program-modal" class="main__modal-overlay hidden">
     <div class="main__modal-content">
         <h3 id="main-modal-title"></h3>
@@ -121,7 +162,7 @@ function closeGreetingModal() {
 </script>
 
 <div class="main__news-container">
-    <a class="main__news-button" href="/category/headlines/">News</a>
+    <a class="main-button" href="/category/headlines/">News</a>
     <div class="main__news-row">
         {% for news in upcoming_news %}
         <div class="main__news-column">
@@ -142,6 +183,7 @@ function closeGreetingModal() {
         {% endfor %}
     </div>
 </div>
+
 
 
 

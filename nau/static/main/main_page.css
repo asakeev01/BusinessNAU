@@ -1,3 +1,34 @@
+.main-button {
+    display: inline-block;
+    position: relative;
+    color: #004766;
+    text-decoration: none;
+    font-size: 23px;
+    font-family: osvald;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.main-button::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #F0775A;
+    transition: width 0.3s ease;
+}
+
+.main-button:hover {
+    color: #F0775A;
+    transform: scale(1.05);
+}
+
+.main-button:hover::after {
+    width: 100%;
+}
+
 .main__header-container {
 }
 
@@ -265,49 +296,164 @@
     color: #ff0000;
 }
 
+.main__program-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    background-color: #f9f9f9;
+    margin: 20px 150px 20px 150px;
+}
+
+.main__program-row {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    margin: 20px 100px 0 100px;
+    flex-wrap: wrap;
+}
+
+.main__program-column {
+    width: 27%;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 20px 20px 20px 20px;
+}
+
+.main__program-image-container {
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+}
+
+.main__program-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.main__program-content {
+    padding: 15px;
+}
+
+.main__program-image-container:hover .main__program-image {
+    transform: scale(1.1);
+}
+
+.main__program-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #005d88;
+}
+
+.main__program-text {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.main__program-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.main__program-link {
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.main__program-link--more {
+    color: #004766;
+    border: 1px solid #004766;
+}
+
+.main__program-link--apply {
+    color: #fff;
+    background-color: #28a745;
+    border: 1px solid #28a745;
+}
+
+.main__program-link--more:hover {
+    background-color: #004766;
+    color: #fff;
+}
+
+.main__program-link--apply:hover {
+    background-color: #218838;
+    border-color: #218838;
+}
+
+.accordion-toggle {
+    background-color: #f1f1f1;
+    color: #005d88;
+    font-weight: bold;
+    font-size: 18px;
+    border: none;
+    width: 100%;
+    padding: 15px;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.accordion-toggle:hover {
+    background-color: #e6e6e6;
+}
+
+.accordion-toggle .arrow {
+    transition: transform 0.3s ease;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding 0.3s ease;
+    padding: 0 0;
+}
+
+.accordion-content.open {
+    max-height: 500px;
+    padding: 15px 0;
+}
+
+.accordion-toggle .arrow {
+    transition: transform 0.3s ease;
+}
+
+.accordion-toggle.open .arrow {
+    transform: rotate(180deg);
+}
+
+.accordion.active .accordion-content {
+    display: block;
+}
+
+.accordion.active .arrow {
+    transform: rotate(180deg);
+}
 
 .main__news-container {
     display: flex;
     flex-wrap: wrap;
     padding: 20px;
     background-color: #f9f9f9;
-    margin: 0 150px 0 150px;
+    margin: 0 150px 20px 150px;
 }
-
-.main__news-button {
-    position: relative;
-    color: #004766;
-    text-decoration: none;
-    font-size: 23px;
-    font-family: osvald;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.main__news-button::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: #F0775A;
-    transition: width 0.3s ease;
-}
-
-.main__news-button:hover {
-    color: #F0775A;
-    transform: scale(1.05);
-}
-
-.main__news-button:hover::after {
-    width: 100%;
-}
-
-.main__news-button:hover {
-    transform: scale(1.05);
-}
-
 
 .main__news-row {
     display: flex;

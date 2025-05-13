@@ -6,6 +6,7 @@ from solo.models import SingletonModel
 class StaffPageConfig(SingletonModel):
     name = models.CharField(max_length=255)
     header_image = models.ImageField()
+    main_image = models.ImageField(blank=True, null=True)
 
     def __str__(self):
         return "Site Configuration"

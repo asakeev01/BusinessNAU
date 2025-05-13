@@ -6,6 +6,7 @@ class Program(models.Model):
     name = models.CharField(max_length=200, blank=True, null=True)
     main_name = models.CharField(max_length=200, blank=True, null=True)
     main_description = RichTextField()
+    main_image = models.ImageField()
 
     def __str__(self):
         return self.name
