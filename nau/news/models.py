@@ -1,6 +1,17 @@
 from django.db import models
 
+from solo.models import SingletonModel
+
 from ckeditor.fields import RichTextField
+
+
+class NewsPageConfig(SingletonModel):
+    name = models.CharField(max_length=255)
+    header_image = models.ImageField()
+
+    def __str__(self):
+        return "Site Configuration"
+
 
 class News(models.Model):
     NEWS_CHOICES = [

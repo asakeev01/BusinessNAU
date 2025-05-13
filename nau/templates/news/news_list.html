@@ -2,76 +2,75 @@
 {% block title %}News{% endblock %}
 
 {% block content %}
-<div class="container-fluid p-0">
-    <div class="staff__image-container position-relative main__header-container">
-        <img src="https://business.na.edu/wp-content/uploads/2024/04/0737ac99b8cc62d127c57c9cd24494ca.png" alt="News Header" class="img-fluid w-100">
-        <div class="main__header-overlay"></div>
-        <div class="main__header-text">
-            <p>Latest & Upcoming News</p>
-        </div>
+<div class="staff__image-container position-relative main__header-container">
+    <img src="https://business.na.edu/wp-content/uploads/2024/04/0737ac99b8cc62d127c57c9cd24494ca.png" alt="News Header" class="img-fluid w-100">
+    <div class="main__header-overlay"></div>
+    <div class="main__header-text">
+        <p>Latest & Upcoming News</p>
     </div>
 </div>
 
-<div class="main__news-container" style="flex-direction: column; padding-bottom: 40px;">
-    <a class="main-button" href="#">News</a>
+<div class="news__section">
 
-    <div style="display: flex; justify-content: space-between; gap: 30px; flex-wrap: wrap; margin-top: 20px;">
-        <div style="flex: 1; min-width: 300px;">
-            <h2 class="main__greeting-heading">Latest News</h2>
-            <div class="main__news-row" style="flex-direction: column; gap: 20px;">
+    <div class="news__columns">
+        <!-- Latest News -->
+        <div class="news__block">
+            <h2 class="news__heading">Latest News</h2>
+            <div class="news__items">
                 {% for news in latest_news %}
-                <div class="main__news-column">
-                    <div class="main__news-image-container">
+                <div class="news__card">
+                    <div class="news__image-container">
                         {% if news.image %}
                             {% if news.link %}
                                 <a href="{{ news.link }}" target="_blank">
                             {% else %}
                                 <a href="{% url 'detail' news.id %}">
                             {% endif %}
-                                    <img src="{{ news.image.url }}" alt="{{ news.name }}" class="main__news-image">
+                                    <img src="{{ news.image.url }}" alt="{{ news.name }}" class="news__image">
                                 </a>
                         {% endif %}
                     </div>
-                    <div class="main__news-content">
-                        <h4 class="main__news-title">
+                    <div class="news__content">
+                        <h4 class="news__title">
                             {% if news.link %}
                                 <a href="{{ news.link }}" target="_blank">{{ news.name }}</a>
                             {% else %}
                                 <a href="{% url 'detail' news.id %}">{{ news.name }}</a>
                             {% endif %}
                         </h4>
-                        <p class="main__news-text">{{ news.title }}</p>
+                        <p class="news__text">{{ news.title }}</p>
                     </div>
                 </div>
                 {% endfor %}
             </div>
         </div>
 
-        <div style="flex: 1; min-width: 300px;">
-            <h2 class="main__greeting-heading">Upcoming News</h2>
-            <div class="main__news-row" style="flex-direction: column; gap: 20px;">
+        <!-- Upcoming News -->
+        <div class="news__block">
+            <h2 class="news__heading">Upcoming News</h2>
+            <div class="news__items">
                 {% for news in upcoming_news %}
-                <div class="main__news-column">
-                    <div class="main__news-image-container">
+                <div class="news__card">
+                    <div class="news__image-container">
                         {% if news.image %}
                             {% if news.link %}
                                 <a href="{{ news.link }}" target="_blank">
                             {% else %}
                                 <a href="{% url 'detail' news.id %}">
                             {% endif %}
-                                    <img src="{{ news.image.url }}" alt="{{ news.name }}" class="main__news-image">
+                                    <img src="{{ news.image.url }}" alt="{{ news.name }}" class="news__image">
                                 </a>
                         {% endif %}
                     </div>
-                    <div class="main__news-content">
-                        <h4 class="main__news-title">
+                    <div class="news__content">
+                        <h4 class="news__title">
                             {% if news.link %}
                                 <a href="{{ news.link }}" target="_blank">{{ news.name }}</a>
                             {% else %}
                                 <a href="{% url 'detail' news.id %}">{{ news.name }}</a>
                             {% endif %}
                         </h4>
-                        <p class="main__news-text">{{ news.title }}</p>
+                        <p class="news__text">{{ news.title }}</p>
                     </div>
                 </div>
                 {% endfor %}
@@ -80,3 +79,4 @@
     </div>
 </div>
 {% endblock %}
+
