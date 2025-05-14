@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}{{ news.name }}{% endblock %}
+
+{% block content %}
+<div class="staff__image-container position-relative main__header-container">
+    {% if news.image %}
+        <img src="{{ news.image.url }}" alt="{{ news.name }}" class="img-fluid w-100">
+    {% else %}
+        <img src="https://via.placeholder.com/1200x400?text=News+Image" alt="News Header" class="img-fluid w-100">
+    {% endif %}
+    <div class="main__header-overlay"></div>
+    <div class="main__header-text">
+        <p>{{ news.name }}</p>
+    </div>
+</div>
+
+<div class="news__detail-container">
+    <div class="news__detail-content">
+        {{ news.content|safe }}
+    </div>
+</div>
+{% endblock %}

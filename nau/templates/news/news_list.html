@@ -3,17 +3,18 @@
 
 {% block content %}
 <div class="staff__image-container position-relative main__header-container">
-    <img src="https://business.na.edu/wp-content/uploads/2024/04/0737ac99b8cc62d127c57c9cd24494ca.png" alt="News Header" class="img-fluid w-100">
+    {% if config.header_image %}
+    <img src="{{ config.header_image.url }}" alt="News Header" class="img-fluid w-100">
+    {% endif %}
     <div class="main__header-overlay"></div>
     <div class="main__header-text">
-        <p>Latest & Upcoming News</p>
+        <p>{{ config.name }}</p>
     </div>
 </div>
 
 <div class="news__section">
 
     <div class="news__columns">
-        <!-- Latest News -->
         <div class="news__block">
             <h2 class="news__heading">Latest News</h2>
             <div class="news__items">
