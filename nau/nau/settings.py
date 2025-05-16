@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     "staff.apps.StaffConfig",
     "main.apps.MainConfig",
     "news.apps.NewsConfig",
+    "events.apps.EventsConfig",
 
     "solo",
     "ckeditor"
