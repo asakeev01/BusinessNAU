@@ -27,4 +27,9 @@ class EventImage(models.Model):
     image = models.ImageField()
 
 
+class EventVideo(models.Model):
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    video = models.FileField()
+
+
 
