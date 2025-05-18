@@ -1,3 +1,11 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import *
+
+from solo.admin import SingletonModelAdmin
+
+
+admin.site.register(Event)
+admin.site.register(EventImage)
+admin.site.register(EventVideo)
+admin.site.register(EventsPageConfig, SingletonModelAdmin)

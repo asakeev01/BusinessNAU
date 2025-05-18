@@ -12,7 +12,12 @@ class EventsPageConfig(SingletonModel):
         return "Site Configuration"
 
 
+class EventType(models.Model):
+    name = models.CharField(max_length=255)
+
+
 class Event(models.Model):
+    event_type = models.ForeignKey(EventType, on_delete=models.CASCADE)
     flyer = models.ImageField()
     name = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
@@ -30,6 +35,5 @@ class EventImage(models.Model):
 class EventVideo(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     video = models.FileField()
-
 
 
