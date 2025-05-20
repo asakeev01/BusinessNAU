@@ -3,6 +3,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("", views.index, name="index"),
-    path("<int:pk>/", views.detail, name='detail'),
+    path("", views.news_list, name="news-list"),
+    path("<int:pk>/", views.news_detail, name='news-detail'),
 ]

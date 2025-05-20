@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}{{ event.name }}{% endblock %}
+
+{% block content %}
+<div class="staff__image-container position-relative main__header-container">
+    {% if event.flyer %}
+        <img src="{{ event.flyer.url }}" alt="{{ event.name }}" class="img-fluid w-100">
+    {% endif %}
+    <div class="main__header-overlay"></div>
+    <div class="main__header-text">
+        <p>{{ event.name }}</p>
+    </div>
+</div>
+
+<div class="events__detail-container">
+    <div class="events__detail-content">
+        <h3>{{ event.title }}</h3>
+        <p><strong>Date:</strong> {{ event.date|date:"F d, Y H:i" }}</p>
+        <p><strong>Place:</strong> {{ event.place }}</p>
+        <p><strong>Speaker:</strong> <a href="{{ event.speaker_link }}" target="_blank">{{ event.speaker }}</a></p>
+
+        {% if images %}
+        <h4 class="events__section-heading">Gallery</h4>
+        <div class="events__gallery">
+            {% for img in images %}
+                <img src="{{ img.image.url }}" alt="Event Image" class="events__gallery-image">
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if videos %}
+        <h4 class="events__section-heading">Videos</h4>
+        <div class="events__videos">
+            {% for vid in videos %}
+                <video controls class="events__video">
+                    <source src="{{ vid.video.url }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

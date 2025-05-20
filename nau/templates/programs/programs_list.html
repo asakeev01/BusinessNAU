@@ -8,7 +8,7 @@
     {% if program_list %}
         <ul>
         {% for program in program_list %}
-            <li><a href="{% url 'detail' program.id %}">{{ program.name }}</a></li>
+            <li><a href="{% url 'program-detail' program.id %}">{{ program.name }}</a></li>
         {% endfor %}
         </ul>
     {% else %}

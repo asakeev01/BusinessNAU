@@ -85,7 +85,7 @@ function closeGreetingModal() {
         <div class="main__program-column">
             <div class="main__program-image-container">
                 {% if program.main_image %}
-                <a href="{% url 'detail' program.id %}" target="_blank">
+                <a href="{% url 'program-detail' program.id %}" target="_blank">
                     <img src="{{ program.main_image.url }}" alt="{{ program.main_name }}" class="main__program-image">
                 </a>
                 {% endif %}
@@ -99,7 +99,7 @@ function closeGreetingModal() {
                     <p class="main__program-text">{{ program.main_description }}</p>
                 </div>
                 <div class="main__program-buttons">
-                    <a class="main__program-link main__program-link--more" href="{% url 'detail' program.id %}">More</a>
+                    <a class="main__program-link main__program-link--more" href="{% url 'program-detail' program.id %}">More</a>
                     <a class="main__program-link main__program-link--apply" href="https://nau.my.site.com/apply/TX_CommunitiesSelfReg" target="_blank">Apply</a>
                 </div>
             </div>

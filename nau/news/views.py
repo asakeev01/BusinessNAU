@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import *
 
 
-def index(request):
+def news_list(request):
     latest_news = News.objects.filter(type='Latest').order_by('-id')
     upcoming_news = News.objects.filter(type='Upcoming').order_by('-id')
     config = NewsPageConfig.get_solo()
@@ -16,7 +16,7 @@ def index(request):
     return render(request, 'news/news_list.html', context)
 
 
-def detail(request, pk):
+def news_detail(request, pk):
     news = get_object_or_404(News, pk=pk)
     context = {
         'news': news
