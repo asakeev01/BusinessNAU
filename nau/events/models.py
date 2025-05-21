@@ -15,16 +15,19 @@ class EventsPageConfig(SingletonModel):
 class EventType(models.Model):
     name = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.name
+
 
 class Event(models.Model):
     event_type = models.ForeignKey(EventType, on_delete=models.CASCADE)
     flyer = models.ImageField()
     name = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
-    date = models.DateTimeField()
+    date = models.CharField(max_length=255)
     place = models.CharField(max_length=255)
-    speaker = models.CharField(max_length=255)
-    speaker_link = models.URLField(max_length=200)
+    speaker = models.CharField(max_length=255, blank=True)
+    speaker_link = models.URLField(max_length=200, blank=True)
 
 
 class EventImage(models.Model):
