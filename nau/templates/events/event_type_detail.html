@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}{{ event_type.name }} Events{% endblock %}
+
+{% block content %}
+<div class="staff__image-container position-relative main__header-container">
+    <img src="https://via.placeholder.com/1200x400?text={{ event_type.name|urlencode }}+Events" alt="{{ event_type.name }} Events" class="img-fluid w-100">
+    <div class="main__header-overlay"></div>
+    <div class="main__header-text">
+        <p>{{ event_type.name }} Events</p>
+    </div>
+</div>
+
+<div class="events__section">
+    <div class="events__container">
+        {% if events %}
+            {% for event in events %}
+            <div class="events__card">
+                <div class="events__image-wrapper">
+                    <a href="{% url 'event_detail' event.id %}">
+                        <img src="{{ event.flyer.url }}" alt="{{ event.name }}" class="events__image">
+                    </a>
+                </div>
+                <div class="events__info">
+                    <h4 class="events__title">
+                        <a href="{% url 'event_detail' event.id %}">{{ event.name }}</a>
+                    </h4>
+                    <p class="events__text">{{ event.title }}</p>
+                    <p class="events__text"><strong>Date:</strong> {{ event.date|date:"F d, Y H:i" }}</p>
+                    <p class="events__text"><strong>Place:</strong> {{ event.place }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No events found for this type.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

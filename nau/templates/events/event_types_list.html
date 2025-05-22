@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Events{% endblock %}
+
+{% block content %}
+<div class="staff__image-container position-relative main__header-container">
+    {% if config.header_image %}
+        <img src="{{ config.header_image.url }}" alt="{{ config.name }}" class="img-fluid w-100">
+    {% endif %}
+    <div class="main__header-overlay"></div>
+    <div class="main__header-text">
+        <p>{{ config.name }}</p>
+    </div>
+</div>
+
+<div class="events__section">
+    <div class="events__description">
+        <p>{{ config.description }}</p>
+    </div>
+
+    {% for block in event_type_data %}
+    <div class="events__type-row">
+        <div class="events__type-label">
+            <a href="{% url 'event-type-detail' block.type.id %}">{{ block.type.name }}</a>
+        </div>
+
+        <div class="events__slider-container">
+            <button class="events__arrow events__arrow-left" onclick="slideLeft({{ block.type.id }})">&#10094;</button>
+
+            <div id="slider-{{ block.type.id }}" class="events__slider-track">
+                {% for img in block.images %}
+                <div class="events__slide">
+                    <a href="{% url 'event-detail' block.event_id %}">
+                        <img src="{{ img.image.url }}" alt="Event Image" class="events__slider-img">
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+
+            <button class="events__arrow events__arrow-right" onclick="slideRight({{ block.type.id }})">&#10095;</button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function slideLeft(id) {
+    const slider = document.getElementById('slider-' + id);
+    slider.scrollBy({ left: -160, behavior: 'smooth' });
+}
+
+function slideRight(id) {
+    const slider = document.getElementById('slider-' + id);
+    slider.scrollBy({ left: 160, behavior: 'smooth' });
+}
+</script>
+{% endblock %}
