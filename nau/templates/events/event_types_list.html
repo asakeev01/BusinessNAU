@@ -2,6 +2,7 @@
 {% block title %}Events{% endblock %}
 
 {% block content %}
+<!-- Header -->
 <div class="staff__image-container position-relative main__header-container">
     {% if config.header_image %}
         <img src="{{ config.header_image.url }}" alt="{{ config.name }}" class="img-fluid w-100">
@@ -12,6 +13,7 @@
     </div>
 </div>
 
+<!-- Event Types Section -->
 <div class="events__section">
     <div class="events__description">
         <p>{{ config.description }}</p>
@@ -23,36 +25,96 @@
             <a href="{% url 'event-type-detail' block.type.id %}">{{ block.type.name }}</a>
         </div>
 
-        <div class="events__slider-container">
-            <button class="events__arrow events__arrow-left" onclick="slideLeft({{ block.type.id }})">&#10094;</button>
+        <div class="events__slider-wrapper">
+            <button class="events__arrow events__arrow-left" onclick="rotateLeft({{ block.type.id }})">&#10094;</button>
 
-            <div id="slider-{{ block.type.id }}" class="events__slider-track">
+            <div class="events__slider" id="slider-{{ block.type.id }}" data-id="{{ block.type.id }}" data-images='[
                 {% for img in block.images %}
-                <div class="events__slide">
-                    <a href="{% url 'event-detail' block.event_id %}">
-                        <img src="{{ img.image.url }}" alt="Event Image" class="events__slider-img">
-                    </a>
-                </div>
+                    {"url": "{{ img.image.url }}", "event_url": "{% url 'event-detail' block.event_id %}"}{% if not forloop.last %},{% endif %}
                 {% endfor %}
+            ]'>
+                <div class="events__track"></div>
             </div>
 
-            <button class="events__arrow events__arrow-right" onclick="slideRight({{ block.type.id }})">&#10095;</button>
+            <button class="events__arrow events__arrow-right" onclick="rotateRight({{ block.type.id }})">&#10095;</button>
         </div>
+
     </div>
     {% endfor %}
+
+    <!-- JS RIGHT INSIDE CONTENT BLOCK -->
+    <script>
+    function renderTrack(id, images) {
+        const slider = document.getElementById('slider-' + id);
+        const track = slider.querySelector('.events__track');
+        track.innerHTML = '';
+
+        images.forEach(img => {
+            const slide = document.createElement('div');
+            slide.className = 'events__slide';
+
+            const link = document.createElement('a');
+            link.href = img.event_url;
+
+            const image = document.createElement('img');
+            image.src = img.url;
+            image.className = 'events__slider-img';
+
+            link.appendChild(image);
+            slide.appendChild(link);
+            track.appendChild(slide);
+        });
+
+        slider.dataset.images = JSON.stringify(images);
+    }
+
+    function rotate(id, direction) {
+        const slider = document.getElementById('slider-' + id);
+        const track = slider.querySelector('.events__track');
+        let images = JSON.parse(slider.dataset.images);
+
+        // Prevent interaction
+        if (track.classList.contains('is-animating')) return;
+
+        track.classList.add('is-animating');
+        const slideWidth = 160; // slide + margin
+
+        // Apply animation
+        track.style.transition = 'transform 0.3s ease';
+        track.style.transform = direction === 'left' ? `translateX(-${slideWidth}px)` : `translateX(${slideWidth}px)`;
+
+        setTimeout(() => {
+            // Reorder images
+            if (direction === 'left') {
+                images.push(images.shift());
+            } else {
+                images.unshift(images.pop());
+            }
+
+            // Reset
+            track.style.transition = 'none';
+            track.style.transform = 'translateX(0)';
+            renderTrack(id, images);
+            track.classList.remove('is-animating');
+        }, 300);
+    }
+
+    function rotateRight(id) {
+        rotate(id, 'left');
+    }
+
+    function rotateLeft(id) {
+        rotate(id, 'right');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.events__slider').forEach(slider => {
+            const id = slider.dataset.id;
+            const images = JSON.parse(slider.dataset.images);
+            renderTrack(id, images);
+        });
+    });
+    </script>
+
 </div>
-{% endblock %}
-
-{% block extra_js %}
-<script>
-function slideLeft(id) {
-    const slider = document.getElementById('slider-' + id);
-    slider.scrollBy({ left: -160, behavior: 'smooth' });
-}
-
-function slideRight(id) {
-    const slider = document.getElementById('slider-' + id);
-    slider.scrollBy({ left: 160, behavior: 'smooth' });
-}
-</script>
 {% endblock %}
