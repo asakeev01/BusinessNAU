@@ -14,6 +14,7 @@ class EventsPageConfig(SingletonModel):
 
 class EventType(models.Model):
     name = models.CharField(max_length=255)
+    header_image = models.ImageField(blank=True)
 
     def __str__(self):
         return self.name

@@ -1,38 +1,47 @@
 {% extends "base.html" %}
-{% block title %}{{ event_type.name }} Events{% endblock %}
+{% block title %}{{ event_type.name }}{% endblock %}
 
 {% block content %}
+<!-- Header Section with EventType Header Image -->
 <div class="staff__image-container position-relative main__header-container">
-    <img src="https://via.placeholder.com/1200x400?text={{ event_type.name|urlencode }}+Events" alt="{{ event_type.name }} Events" class="img-fluid w-100">
+    {% if event_type.header_image %}
+        <img src="{{ event_type.header_image.url }}" alt="{{ event_type.name }}" class="img-fluid w-100">
+    {% endif %}
     <div class="main__header-overlay"></div>
     <div class="main__header-text">
-        <p>{{ event_type.name }} Events</p>
+        <p>{{ event_type.name }}</p>
     </div>
 </div>
 
+<!-- List of Events for this Type -->
 <div class="events__section">
     <div class="events__container">
-        {% if events %}
-            {% for event in events %}
-            <div class="events__card">
-                <div class="events__image-wrapper">
-                    <a href="{% url 'event_detail' event.id %}">
-                        <img src="{{ event.flyer.url }}" alt="{{ event.name }}" class="events__image">
-                    </a>
-                </div>
-                <div class="events__info">
-                    <h4 class="events__title">
-                        <a href="{% url 'event_detail' event.id %}">{{ event.name }}</a>
-                    </h4>
-                    <p class="events__text">{{ event.title }}</p>
-                    <p class="events__text"><strong>Date:</strong> {{ event.date|date:"F d, Y H:i" }}</p>
-                    <p class="events__text"><strong>Place:</strong> {{ event.place }}</p>
-                </div>
+        {% for event in events %}
+        <div class="events__type-row">
+            <!-- Flyer on the left -->
+            <div class="events__image-wrapper" style="flex: 1; max-width: 200px;">
+                <img src="{{ event.flyer.url }}" alt="{{ event.name }}" class="events__image">
             </div>
-            {% endfor %}
-        {% else %}
-            <p>No events found for this type.</p>
-        {% endif %}
+
+            <!-- Info in the middle -->
+            <div class="events__info" style="flex: 2; padding: 0 20px;">
+                <h3 class="events__title">
+                    <a href="{% url 'event-detail' event.id %}">{{ event.name }}</a>
+                </h3>
+                <p class="events__text">{{ event.title }}</p>
+                <p class="events__text"><time datetime="{{ event.date|date:'c' }}">{{ event.date|date:"F j, g:i a" }}</time></p>
+                <p class="events__text">{{ event.place }}</p>
+                <p class="events__text"><a href="{{ event.speaker_link }}">{{ event.speaker }}</a></p>
+            </div>
+
+            <!-- Two thumbnails on the right -->
+            <div class="events__gallery" style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
+                {% for image in event.images.all|slice:":2" %}
+                <img src="{{ image.image.url }}" alt="" class="events__gallery-image">
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
